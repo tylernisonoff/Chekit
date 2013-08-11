@@ -1,0 +1,6 @@
+#lists
+  - lists.each do |list|
+    .list{id:"list#{list.id}"}
+      = list.name
+      = link_to "", "#"
+  = link_to  "New", "#", class: "btn btn-primary"

@@ -1,0 +1,11 @@
+#side-pane
+  %h3 Todo lists
+  = render 'lists', lists: @lists
+#main-pane
+  #items-view
+    #new-todo-box
+      %input#new-todo{type:"text",placeholder:"New item"}
+    %ul#item-list
+#top-tag-filter
+  #tag-filter.tag-list
+    .label Show:

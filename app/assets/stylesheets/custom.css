@@ -1,0 +1,141 @@
+/* General */
+* {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  color: #333;
+  background: #eee;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: block;
+  line-height: 1.5;
+}
+
+h3 {
+  text-decoration: underline;
+  font-size: 120%;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+input {
+  font-size: 100%;
+}
+
+/* Main Groups */
+
+#side-pane, #main-pane, #top-tag-filter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#side-pane {
+  z-index: 100;
+  width: 200px;
+  border-right: 1px solid #999;
+  background: #ddd;
+  right: auto;
+}
+
+#top-tag-filter {
+  right: 0;
+  left: 200px;
+  height: 44px;
+  bottom: auto;
+  background: #ddd;
+  border-bottom: 1px solid #999;
+}
+
+#main-pane {
+  top: 45px;
+  right: 0;
+  left: 220px;
+  overflow: auto;
+}
+
+/* side-pane specific */
+
+#lists .list {
+  padding: 3px 6px;
+}
+
+.list:hover {
+  background-color: #C7C3C4;
+}
+
+/* top-tag specific */
+
+#tag-filter .label {
+  float: left;
+  margin: 9px 8px 0px 12px;
+}
+
+/* main pane specific  */
+
+#items-view{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#new-todo-box {
+  margin: 10px 20px 10px 60px;
+  font-size: 160%;
+  position: relative;
+  height: 40px;
+}
+
+#new-todo {
+  position: absolute;
+  width: 100%;
+}
+
+#item-list .item .display, #item-list .item .edit {
+  margin-left: 30px;
+  height: 100%;
+  width: auto;
+  float: left;
+  padding-top: 18px;
+  line-height: 1;
+}
+
+#item-list .item {
+  display: block;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #ccc;
+}
+
+#item-list .item .check {
+  float: left;
+  width: 25px;
+}
+
+#item-list .item .item-text {
+  float: left;
+  margin-left: 10px;
+  font-size: 100%;
+}
+
+#item-list .item .item-tags {
+  overflow: auto;
+  float: right;
+  margin-right: 8px;
+}
+
+#item-list .item .item-tags div.addtag {
+  background: 0;
+  color: #333;
+  border: 1px dashed #999;
+}
+
+#item-list .item .item-tags .tag {
+  margin-top: 15px;
+}
