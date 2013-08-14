@@ -1,6 +1,8 @@
 #side-pane
-  %h3 Todo lists
+  %h3 Todo Lists
   = render 'lists', lists: @lists
+  #createList
+    %input#new-list{type: "text", placeholder: "New list"}
 #main-pane
   #items-view
     #new-todo-box
@@ -9,3 +11,4 @@
 #top-tag-filter
   #tag-filter.tag-list
     .label Show:
+    = render 'sorted', sorted_tags: @sorted_tags

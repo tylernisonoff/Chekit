@@ -1,0 +1,11 @@
+.item{ class:"item", itemID: "#{item.id}" }
+  .destroy
+  .display
+    %input.check{type: "checkbox", name: "markdone" }
+      .item-text= item.name
+  .item-tags
+    - item.tags.each do |tag|
+      = render 'items/item_tag', tag: tag
+    .tag.edittag{style:"display:none;"}
+      %input.edittag-input{type:"text", value:""}
+    .tag.addtag +tag

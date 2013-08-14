@@ -1,0 +1,7 @@
+/*
+   The following code adds the new list element to the side bar
+   and then selects it
+ */
+$("<%= escape_javascript(render "side_list", list: @list ) %>").appendTo("#lists");
+var id = "#list<%= @list.id %>";
+$(id).click();

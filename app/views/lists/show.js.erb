@@ -1,0 +1,6 @@
+$("#item-list").empty();
+$("<%= escape_javascript(render @list) %>").appendTo("#item-list")
+
+$("#tag-filter").empty();
+$("#tag-filter").append("<div class='label'>Show:</div>");
+$("<%= escape_javascript(render 'sorted', sorted_tags: @sorted_tags) %>").appendTo("#tag-filter")

@@ -42,6 +42,7 @@ input {
   border-right: 1px solid #999;
   background: #ddd;
   right: auto;
+  overflow: auto;
 }
 
 #top-tag-filter {
@@ -66,8 +67,23 @@ input {
   padding: 3px 6px;
 }
 
+#lists .selected {
+  padding: 2px 6px;
+  background: #9be;
+  font-weight: 700;
+}
+
 .list:hover {
   background-color: #C7C3C4;
+}
+
+#createList {
+  padding 3px 6px;
+  margin-top: 5px;
+}
+
+#createList input {
+  width: 180px;
 }
 
 /* top-tag specific */
@@ -75,6 +91,15 @@ input {
 #tag-filter .label {
   float: left;
   margin: 9px 8px 0px 12px;
+}
+
+#tag-filter .tag {
+  margin-top: 10px;
+  border: 1px solid #777;
+}
+
+#tag-filter .selected {
+  background: #69d;
 }
 
 /* main pane specific  */
@@ -138,4 +163,25 @@ input {
 
 #item-list .item .item-tags .tag {
   margin-top: 15px;
+}
+
+.tag {
+  cursor: pointer;
+  float: left;
+  margin: 5px;
+  padding: 2px 7px;
+  font-size: 80%;
+  font-weight: 700;
+  background: #999;
+  color: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  opacity: 1;
+  transition: opacity .3s linear;
+  -moz-transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
+  -o-transition: opacity .3s linear;
+  position: relative;
 }

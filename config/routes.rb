@@ -1,6 +1,9 @@
 TodoMeteor::Application.routes.draw do
   root to: 'lists#index'
   resources :lists
+  resources :items
+  post 'items/:item_id/tag', to: 'items#tag'
+  resources :tags
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,4 @@
+/*
+   The following code adds the new item element to the main view
+ */
+$("<%= escape_javascript(render "item", item: @item ) %>").appendTo("#item-list");

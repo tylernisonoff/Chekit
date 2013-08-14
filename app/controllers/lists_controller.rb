@@ -5,12 +5,16 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    #terrible hard-code for testing reasons
+    @sorted_tags = List.first.sorted_tags
   end
 
   def show
+    puts "here"
     @list = List.find(params[:id])
+    @sorted_tags = @list.sorted_tags
     respond_to do |format|
-      format.json { render json: @list.items }
+      format.js
     end
   end
 
@@ -19,14 +23,16 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = params[:list]
-    redirect_to @list
+    @list = List.new(params[:list])
+    if @list.save
+      respond_to do |format|
+        format.js 
+      end
+    end
   end
 
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-
-    redirect_to lists_path
   end
 end
