@@ -28,6 +28,19 @@ $(document).ready ->
     itemId = getItemIdFromTag(this)
     destroyTag(itemId, tagName)
   )
+
+  $(document).on("click", ".destroy", ->
+    item = $(this).parent()
+    itemId  = $(item).attr("itemId")
+    destroyItem(itemId)
+  )
+
+  $(document).on("change", ".check", ->
+    console.log this.checked
+    $(this).parent().parent().toggleClass "done" # toggle item done
+    itemId = getItemIdFromTag(this)
+    updateItem(itemId, this.checked)
+  )
   # registering blur event for edittag
   # hides edit div with input
   # makes addTag div visible
@@ -55,12 +68,30 @@ $(document).ready ->
       postItem()
       $("#new-todo").val("")
 
+updateItem = (itemId, checked) ->
+  $.ajax '/items/'+itemId+'.js',
+    type: 'PUT',
+    data: {"item" : {"checked" : checked} }
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      console.log "Successful AJAX call"
+ 
+
 hideEditAndShowAdd = (input) ->
   $(input).val("")
   editDivToHide = $(input).parent()[0]
   editDivToHide.style.display = "none"
   addTag = $(editDivToHide).next()[0]
   addTag.style.display = "inline"
+
+destroyItem = (itemId) ->
+  $.ajax '/items/'+itemId+'.js',
+    type: 'DELETE',
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      console.log "Successful AJAX call"
 
 destroyTag = (itemId, newTag) ->
   list_id = getListIdFromSelected()

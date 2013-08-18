@@ -1,7 +1,8 @@
-.item{ class:"item", itemID: "#{item.id}" }
+- item_class = item.checked ? "item done" : "item"
+.item{ class:item_class, itemID: "#{item.id}" }
   .destroy
   .display
-    %input.check{type: "checkbox", name: "markdone" }
+    %input.check{type: "checkbox", name: "markdone", checked: item.checked }
       .item-text= item.name
   .item-tags
     - item.tags.each do |tag|

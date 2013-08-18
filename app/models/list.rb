@@ -1,11 +1,12 @@
 class List < ActiveRecord::Base
-  has_many :items
+  has_many :items, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   attr_accessible :name
 
   # returns an array of tags sorted from most popular to least
   def sorted_tags
-    tags.sort_by {|k,v| v}.reverse
+    tags.sort_by {|k,v| v}.reverse.unshift ["All items", self.items.count]
   end
 
   def tags

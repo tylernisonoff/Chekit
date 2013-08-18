@@ -1,0 +1,5 @@
+$("[itemId='<%= @id %>']")[0].remove();
+
+$("#tag-filter").empty();
+$("#tag-filter").append("<div class='label'>Show:</div>");
+$("<%= escape_javascript(render 'lists/sorted', sorted_tags: @sorted_tags) %>").appendTo("#tag-filter")

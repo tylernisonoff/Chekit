@@ -9,8 +9,17 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    Item.find(params[:id]).update_attributes!(update_params)
+    render nothing: true
+  end
+
   def destroy
-    @item = Item.find(params[:id])
+    @id = params[:id]
+    item = Item.find(@id)
+    list = item.list
+    item.destroy
+    @sorted_tags = list.sorted_tags
     respond_to do |format|
       format.js 
     end
@@ -43,4 +52,9 @@ class ItemsController < ApplicationController
     count = tags_hash[tag.name]
     Tag.find(tag.id).destroy if count == 0
   end
+
+  private
+    def update_params
+      params[:item].slice(:checked)
+    end
 end
