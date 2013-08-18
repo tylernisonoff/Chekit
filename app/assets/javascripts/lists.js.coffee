@@ -22,6 +22,12 @@ $(document).ready ->
     $(input).focus()
   )
   
+  $(document).on("click", ".remove", ->
+    tag = $(this).parent()
+    tagName = tag.attr("name")
+    itemId = getItemIdFromTag(this)
+    destroyTag(itemId, tagName)
+  )
   # registering blur event for edittag
   # hides edit div with input
   # makes addTag div visible
@@ -31,7 +37,7 @@ $(document).ready ->
 
   $(document).on("keyup", ".edittag-input", (e) ->
     if e.keyCode == 13
-      itemId =  getItemIdFromEditTag(this)
+      itemId =  getItemIdFromTag(this)
       newTag = $(this).val()
       hideEditAndShowAdd(this) 
       postTag(itemId, newTag)
@@ -56,10 +62,22 @@ hideEditAndShowAdd = (input) ->
   addTag = $(editDivToHide).next()[0]
   addTag.style.display = "inline"
 
+destroyTag = (itemId, newTag) ->
+  list_id = getListIdFromSelected()
+  $.ajax '/items/'+itemId+'/tag.js',
+    type: 'DELETE',
+    data: {"name": newTag, "list_id" : list_id}
+    error: (jqXHR, textStatus, errorThrown) ->
+          console.log "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+          console.log "Successful AJAX call"
+
+
 postTag = (itemId, newTag) ->
+  list_id = getListIdFromSelected()
   $.ajax '/items/'+itemId+'/tag.js',
     type: 'POST',
-    data: {"name": newTag }
+    data: {"name": newTag, "list_id" : list_id }
     error: (jqXHR, textStatus, errorThrown) ->
           console.log "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
@@ -68,7 +86,6 @@ postTag = (itemId, newTag) ->
 postItem =  ->
   value = $("#new-todo").val()
   list_id = getListIdFromSelected()
-  console.log(list_id)
   if /\S/.test value
     $.ajax '/items.js',
       type: 'POST',
@@ -90,17 +107,15 @@ postList =  ->
           console.log "Successful AJAX call"
 
 getList = (id) ->
-  console.log id
   $.ajax '/lists/'+id+'.js',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
           console.log "AJAX Error: #{textStatus}, #{errorThrown}, #{jqXHR}"
-          console.log jqXHR
       success: (data, textStatus, jqXHR) ->
           console.log "Successful AJAX call"
 
-getItemIdFromEditTag = (edit) ->
-  parentsArray = $(edit).parentsUntil("#item-list")
+getItemIdFromTag = (div) ->
+  parentsArray = $(div).parentsUntil("#item-list")
   item = parentsArray[parentsArray.length-1]
   id = $(item).attr('itemId')
 

@@ -1,0 +1,12 @@
+/*
+   adds tag to item in main view
+   TODO: Update count in top view
+*/
+var item  = $("[itemId='<%= @item_id%>']")[0];
+var tagName = $(item).find("[name='<%= @name %>']");
+var toDelete = tagName.parent();
+toDelete.remove()
+
+$("#tag-filter").empty();
+$("#tag-filter").append("<div class='label'>Show:</div>");
+$("<%= escape_javascript(render 'lists/sorted', sorted_tags: @sorted_tags) %>").appendTo("#tag-filter")

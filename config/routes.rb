@@ -3,6 +3,7 @@ TodoMeteor::Application.routes.draw do
   resources :lists
   resources :items
   post 'items/:item_id/tag', to: 'items#tag'
+  delete 'items/:item_id/tag', to: 'items#destroy_tag'
   resources :tags
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,7 +1,7 @@
-/*
-   adds tag to item in main view
-   TODO: Update count in top view
-*/
 var item_id = <%= @item_tag.item_id %>;
 var editTag = $("[itemid="+item_id+"] > .item-tags > .edittag");
 $(editTag).before(("<%= escape_javascript(render 'items/item_tag', tag: @tag) %>"));
+
+$("#tag-filter").empty();
+$("#tag-filter").append("<div class='label'>Show:</div>");
+$("<%= escape_javascript(render 'lists/sorted', sorted_tags: @sorted_tags) %>").appendTo("#tag-filter")

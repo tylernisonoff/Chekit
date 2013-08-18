@@ -185,3 +185,19 @@ input {
   -o-transition: opacity .3s linear;
   position: relative;
 }
+
+#item-list .item .item-tags .removable_tag {
+  padding-right: 22px;
+}
+
+#item-list .item .item-tags .tag .remove {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  bottom: 0;
+  width: 16px;
+  background: url("close_16.png") no-repeat 0 center;
+}
+#item-list .item .item-tags .tag .remove:hover {
+  background-position: -16px center;
+}
