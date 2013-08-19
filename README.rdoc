@@ -1,2 +1,4 @@
-== TODO
+== Chekit
 A single-page Todo app written in Rails just in time for the semester!
+
+Chekit out at chekit.herokuapp.com
