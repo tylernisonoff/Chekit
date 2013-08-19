@@ -5,9 +5,10 @@
 $(document).ready ->
   # registering click event for list div
   $(document).on("click", ".list", -> 
+    console.log this
     changeSelected(this)
     id = getId(this)
-    getList(id))
+    getList(id, ""))
 
   $(".list:first").click()
   # registering click event for add tag
@@ -22,6 +23,13 @@ $(document).ready ->
     $(input).focus()
   )
   
+
+  $(document).on("click", ".list-del", (e)->
+    listId = $(this).parent().attr('id').substring(4)
+    deleteList(listId) 
+    e.stopPropagation()
+  )
+
   $(document).on("click", ".remove", ->
     tag = $(this).parent()
     tagName = tag.attr("name")
@@ -35,6 +43,15 @@ $(document).ready ->
     destroyItem(itemId)
   )
 
+  $("#top-tag-filter").on("click", ".tag", ->
+    listId = getListIdFromSelected()
+    tagName = $(this).attr("name")
+    changeSelectedTag(this)
+    tag = if (tagName == 'All items') then "" else tagName
+    console.log tag
+    filterList(listId, tag)
+  )
+    
   $(document).on("change", ".check", ->
     console.log this.checked
     $(this).parent().parent().toggleClass "done" # toggle item done
@@ -77,6 +94,14 @@ updateItem = (itemId, checked) ->
     success: (data, textStatus, jqXHR) ->
       console.log "Successful AJAX call"
  
+
+deleteList = (listId) ->
+  $.ajax '/lists/'+listId+'.js',
+    type: 'DELETE',
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      console.log "Successful AJAX call"
 
 hideEditAndShowAdd = (input) ->
   $(input).val("")
@@ -137,6 +162,14 @@ postList =  ->
       success: (data, textStatus, jqXHR) ->
           console.log "Successful AJAX call"
 
+filterList = (id, tag) ->
+  $.ajax '/lists/'+id+'/filter?tag='+tag,
+      type: 'GET',
+      error: (jqXHR, textStatus, errorThrown) ->
+          console.log "AJAX Error: #{textStatus}, #{errorThrown}, #{jqXHR}"
+      success: (data, textStatus, jqXHR) ->
+          console.log "Successful AJAX call"
+
 getList = (id) ->
   $.ajax '/lists/'+id+'.js',
       type: 'GET',
@@ -156,6 +189,10 @@ getListIdFromSelected = () ->
 
 getId = (list) ->
   list.id.substring(4)
+
+changeSelectedTag = (tag) ->
+  console.log $("#top-tag-filter > .tag-list > .tag.selected").attr('class', 'tag')
+  $(tag).attr('class', 'tag selected')
 
 changeSelected = (list) ->
   $(".list.selected").attr('class', 'list')

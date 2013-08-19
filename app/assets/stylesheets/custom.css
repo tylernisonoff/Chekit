@@ -77,6 +77,29 @@ input {
   background-color: #C7C3C4;
 }
 
+#lists .list .list-del {
+  display:block;
+  cursor: pointer;
+  position: absolute;
+  left: 5px;
+  height:20px;
+  width: 20px;
+  margin-top: 2px;
+}
+
+#lists .list .name {
+  margin-left: 22px;
+  display:inline;
+}
+
+#lists .list:hover .list-del {
+  background: url("destroy.png") no-repeat 0 0px;
+}
+
+#lists .list .list-del:hover {
+  background-position: 0 -20px;
+}
+
 #createList {
   padding: 3px 6px;
   margin-top: 5px;

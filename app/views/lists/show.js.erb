@@ -1,5 +1,5 @@
 $("#item-list").empty();
-$("<%= escape_javascript(render @list) %>").appendTo("#item-list")
+$("<%= escape_javascript(render 'list', items: @items) %>").appendTo("#item-list")
 
 $("#tag-filter").empty();
 $("#tag-filter").append("<div class='label'>Show:</div>");

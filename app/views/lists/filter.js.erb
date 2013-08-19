@@ -1,0 +1,2 @@
+$("#item-list").empty();
+$("<%= escape_javascript(render 'list', items: @items) %>").appendTo("#item-list")

@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
 
     ItemTag.where(item_id: @item_id, tag_id: tag.id).destroy_all
 
-    tags_hash  = list.tags
+    tags_hash  = list.get_tags
     @sorted_tags = list.sorted_tags
     count = tags_hash[tag.name]
     Tag.find(tag.id).destroy if count == 0
