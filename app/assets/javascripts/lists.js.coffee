@@ -10,7 +10,7 @@ $(document).ready ->
     id = getId(this)
     getList(id, ""))
 
-  $(".list:first").click()
+  $(".list:first").click() if $("list:first")
   # registering click event for add tag
   # makes edit div with input visibile
   # hides add tag

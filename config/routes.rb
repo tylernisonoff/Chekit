@@ -2,6 +2,7 @@ TodoMeteor::Application.routes.draw do
   root to: 'lists#index'
   resources :lists
   resources :items
+  get 'lists/:id/filter', to: 'lists#filter'
   post 'items/:item_id/tag', to: 'items#tag'
   delete 'items/:item_id/tag', to: 'items#destroy_tag'
   resources :tags
