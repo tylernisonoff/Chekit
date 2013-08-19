@@ -10,7 +10,9 @@ $(document).ready ->
     id = getId(this)
     getList(id, ""))
 
-  $(".list:first").click() if $("list:first")
+  if $(".list").length
+    $(".list:first").click() 
+    console.log clicked
   # registering click event for add tag
   # makes edit div with input visibile
   # hides add tag
@@ -79,10 +81,10 @@ $(document).ready ->
       postList()
       $("#new-list").val("")
 
-  # creates a new list on enter in new list input
+  # creates a new item on enter in new todo input
   $("#new-todo").keyup (e) ->
     if e.keyCode == 13
-      postItem()
+      postItem() if $(".list.selected").length
       $("#new-todo").val("")
 
 updateItem = (itemId, checked) ->

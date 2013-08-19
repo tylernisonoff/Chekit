@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   def create
-    puts params.inspect
     @item = Item.new(params[:item])
+    @sorted_tags = []
     if @item.save
+      @sorted_tags = @item.list.sorted_tags
       respond_to do |format|
         format.js
       end

@@ -1,12 +1,14 @@
 class ListsController < ApplicationController
+  before_filter :auth_user!
+
   def full
-    @lists = List.all
+    @lists = current_user.lists
   end
 
   def index
-    @lists = List.all
+    @lists = current_user.lists
     #terrible hard-code for testing reasons
-    @sorted_tags = List.first.sorted_tags
+    @sorted_tags = []
   end
 
   def show
@@ -34,7 +36,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(params[:list])
+    @list = current_user.lists.new(params[:list])
     if @list.save
       respond_to do |format|
         format.js 
@@ -48,5 +50,9 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.js 
     end
+  end
+
+  def auth_user!
+    redirect_to new_user_registration_url unless user_signed_in?
   end
 end

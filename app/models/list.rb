@@ -1,7 +1,10 @@
 class List < ActiveRecord::Base
   has_many :tags, dependent: :destroy
   has_many :items, dependent: :destroy
+  belongs_to :user
 
+  validates :name, :presence => true
+  validates_uniqueness_of :name, :scope => :user_id
   attr_accessible :name
 
   # returns an array of tags sorted from most popular to least

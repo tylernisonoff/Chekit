@@ -2,3 +2,7 @@
    The following code adds the new item element to the main view
  */
 $("<%= escape_javascript(render "item", item: @item ) %>").appendTo("#item-list");
+
+$("#tag-filter").empty();
+$("#tag-filter").append("<div class='label'>Show:</div>");
+$("<%= escape_javascript(render 'lists/sorted', sorted_tags: @sorted_tags) %>").appendTo("#tag-filter")

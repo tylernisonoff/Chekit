@@ -29,6 +29,31 @@ input {
 
 /* Main Groups */
 
+.new_user, .new_session {
+  width: 40%;
+  display: table-cell;
+  margin: 0em;
+  padding: 1em;
+  height: auto;
+}
+
+.separate {
+  position: relative;
+  top: 100px;
+  left: -100px;
+  width: 5%;
+  display: table-cell;
+  margin: 0em;
+  padding: 1em;
+  height: auto;
+
+}
+
+.separate p {
+  font-size: 40px;
+  text-decoration: underline;
+}
+
 #side-pane, #main-pane, #top-tag-filter {
   position: absolute;
   top: 0;
