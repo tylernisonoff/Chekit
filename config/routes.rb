@@ -1,4 +1,4 @@
-TodoMeteor::Application.routes.draw do
+Chekit::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations'}
 

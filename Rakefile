@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TodoMeteor::Application.load_tasks
+Chekit::Application.load_tasks

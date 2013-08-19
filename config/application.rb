@@ -12,7 +12,7 @@ end
 if defined?(Rails) && (Rails.env == 'development')
     Rails.logger = Logger.new(STDOUT)
 end
-module TodoMeteor
+module Chekit
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
