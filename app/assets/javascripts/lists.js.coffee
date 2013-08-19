@@ -12,7 +12,6 @@ $(document).ready ->
 
   if $(".list").length
     $(".list:first").click() 
-    console.log clicked
   # registering click event for add tag
   # makes edit div with input visibile
   # hides add tag
